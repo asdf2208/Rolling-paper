@@ -1,0 +1,396 @@
+/* ========== 기본 리셋 & 전역 스타일 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #E91E63;
+    --primary-light: #FCE4EC;
+    --primary-dark: #C2185B;
+    --bg: #FFF8F0;
+    --text: #333;
+    --text-light: #777;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 16px;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ========== 떨어지는 하트 배경 ========== */
+.hearts-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    top: -40px;
+    animation: floatDown linear infinite;
+    opacity: 0.15;
+    font-size: 20px;
+    user-select: none;
+}
+
+@keyframes floatDown {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+    50% { opacity: 0.25; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ========== 컨테이너 ========== */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== 헤더 ========== */
+.header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    margin-bottom: 30px;
+}
+
+.header-deco {
+    font-size: 28px;
+    margin-bottom: 16px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.title {
+    font-family: 'Gaegu', cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0 rgba(233, 30, 99, 0.1);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 300;
+}
+
+/* ========== 메모 작성 폼 ========== */
+.write-section {
+    margin-bottom: 40px;
+}
+
+.form-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--primary-light);
+}
+
+.form-title {
+    font-family: 'Gaegu', cursive;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #bbb;
+}
+
+.char-count {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+/* 색상 선택 */
+.color-picker {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.color-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.color-btn:hover {
+    transform: scale(1.15);
+}
+
+.color-btn.selected {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary);
+}
+
+/* 제출 버튼 */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary), #FF6090);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 8px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ========== 메모 목록 ========== */
+.section-title {
+    font-family: 'Gaegu', cursive;
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.memo-count {
+    font-size: 1rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.memos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+/* 메모 카드 */
+.memo-card {
+    padding: 20px 18px 16px;
+    border-radius: 4px 4px 4px 4px;
+    position: relative;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.1);
+    transform: rotate(var(--rotate));
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 0.4s ease-out;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.memo-card::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 16px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 0 0 4px 4px;
+}
+
+.memo-card:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 4px 6px 20px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotate(var(--rotate));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotate));
+    }
+}
+
+.memo-content {
+    font-family: 'Gaegu', cursive;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #444;
+    word-break: break-word;
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.memo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.memo-author {
+    font-weight: 700;
+    color: #666;
+    font-family: 'Gaegu', cursive;
+    font-size: 1rem;
+}
+
+.memo-date {
+    font-size: 0.75rem;
+}
+
+/* ========== 로딩 & 빈 상태 ========== */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #eee;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-light);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* ========== 토스트 메시지 ========== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    z-index: 1000;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, #f44336, #e57373);
+}
+
+/* ========== 푸터 ========== */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+/* ========== 반응형 ========== */
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+    .memos-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-card {
+        padding: 22px 18px;
+    }
+}
+

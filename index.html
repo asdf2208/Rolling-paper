@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조민서 롤링페이퍼 💌</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- 떨어지는 하트 배경 -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="header-deco">✨ 💌 ✨</div>
+            <h1 class="title">조민서에게 보내는<br>롤링페이퍼</h1>
+            <p class="subtitle">마음을 담아 메시지를 남겨주세요 💕</p>
+        </header>
+
+        <!-- 메모 작성 폼 -->
+        <section class="write-section">
+            <div class="form-card">
+                <h2 class="form-title">✏️ 메모 남기기</h2>
+                <form id="memoForm">
+                    <div class="form-group">
+                        <label for="authorName">보내는 사람</label>
+                        <input type="text" id="authorName" placeholder="이름을 입력하세요" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="memoContent">메시지 내용</label>
+                        <textarea id="memoContent" placeholder="마음을 담아 메시지를 적어주세요..." maxlength="500" rows="4"
+                            required></textarea>
+                        <span class="char-count"><span id="charCount">0</span>/500</span>
+                    </div>
+                    <div class="form-group">
+                        <label>메모지 색상 선택</label>
+                        <div class="color-picker">
+                            <button type="button" class="color-btn selected" data-color="#FFF9C4"
+                                style="background:#FFF9C4" title="노랑"></button>
+                            <button type="button" class="color-btn" data-color="#F8BBD0" style="background:#F8BBD0"
+                                title="분홍"></button>
+                            <button type="button" class="color-btn" data-color="#C8E6C9" style="background:#C8E6C9"
+                                title="초록"></button>
+                            <button type="button" class="color-btn" data-color="#BBDEFB" style="background:#BBDEFB"
+                                title="파랑"></button>
+                            <button type="button" class="color-btn" data-color="#E1BEE7" style="background:#E1BEE7"
+                                title="보라"></button>
+                            <button type="button" class="color-btn" data-color="#FFE0B2" style="background:#FFE0B2"
+                                title="주황"></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">💌 메모 남기기</span>
+                        <span class="btn-loading" style="display:none;">전송 중...</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 메모 목록 -->
+        <section class="memos-section">
+            <h2 class="section-title">📝 남겨진 메모들 <span id="memoCount" class="memo-count"></span></h2>
+            <div class="memos-grid" id="memosGrid">
+                <!-- 메모들이 여기에 표시됩니다 -->
+            </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>메모를 불러오는 중...</p>
+            </div>
+            <div class="empty-state" id="emptyState" style="display:none;">
+                <div class="empty-icon">📭</div>
+                <p>아직 남겨진 메모가 없어요.<br>첫 번째 메모를 남겨보세요! 💕</p>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>Made with 💖 for 조민서</p>
+        </footer>
+    </div>
+
+    <!-- 토스트 메시지 -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
